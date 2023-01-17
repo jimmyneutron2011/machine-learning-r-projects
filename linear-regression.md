@@ -16,6 +16,8 @@ print(head(bike))
 
 ![1](https://user-images.githubusercontent.com/97744709/212746134-19160522-3052-48bb-aca2-738adc58dbe8.jpg)
 
+_#We are trying to predict count_
+
 **EXPLORATORY DATA ANALYSIS**
 
 **#Scatter plot of count vs temp**
@@ -100,6 +102,10 @@ print(summary(temp.model))
 
 ![9](https://user-images.githubusercontent.com/97744709/212751262-453d1fcd-dcbb-49fa-b966-499219033a95.jpg)
 
+_#Intercept (β0) is the value of y when x=0. Thus, it is the estimated number of rentals when the temperature is 0 degrees Celsius. It does not always make sense to interpret the intercept._
+
+_#The "temp" coefficient (β1) is the change in y divided by change in x, or the "slope". Thus, a temperature increase of 1 degree Celsius is associated with a rental increase of 9.17 bikes. This is not a statement of causation. β1 would be negative if an increase in temperature was associated with a decrease in rentals._
+
 **#Predicting bike rentals if the temperature was 25 degrees Celsius**
 
 temp.test <- data.frame(temp=c(25))
@@ -110,7 +116,12 @@ print(temp.25.prediction)
 
 ![10](https://user-images.githubusercontent.com/97744709/212751604-65ca86da-15e2-486b-818e-c03c8d2e0cf7.jpg)
 
+**#Building a model that attempts to predict count based off of the following features - season, holiday, workingday, weather, temp, humidity, windspeed, hour(factor)**
 
 model <- lm(count ~ .-datetime-atemp-casual-registered,bike)
 
-# print(summary(model))
+print(summary(model))
+
+![11](https://user-images.githubusercontent.com/97744709/212871283-ea25d5b9-150a-4da1-bc0a-1f352f11723f.jpg)
+
+_#A linear model like the one we chose which uses Ordinary least squares (OLS) won't be able to take into account seasonality of our data, and will get thrown off by the growth in our dataset, accidentally attributing it towards the winter season, instead of realizing its just overall demand growing. This sort of model doesn't work well given our seasonal and time series data._
