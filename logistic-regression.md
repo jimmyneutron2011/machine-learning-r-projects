@@ -44,18 +44,29 @@ print(table(adult$type_employer))
 
 ![5](https://user-images.githubusercontent.com/97744709/212878966-d65ca887-29e3-4950-87ef-b309b4fcbb16.jpg)
 
-group_emp <- function(job) {
-  job <- as.character(job)
-  if (job == 'Never-worked' | job == 'Without-pay') {
-    return('Unemployed')
-  } else if (job == 'Local-gov' | job == 'State-gov') {
-    return('SL-gov')
-  } else if (job == 'Self-emp-inc' | job == 'Self-emp-not-inc') {
-    return('self-emp')
-  } else{
-    return(job)
-  }
-}
+    group_emp <- function(job) {
+  
+    job <- as.character(job)
+  
+    if (job == 'Never-worked' | job == 'Without-pay') {
+    
+      return('Unemployed')
+  
+    } else if (job == 'Local-gov' | job == 'State-gov') {
+    
+      return('SL-gov')
+  
+    } else if (job == 'Self-emp-inc' | job == 'Self-emp-not-inc') {
+    
+      return('self-emp')
+  
+    } else{
+    
+      return(job)
+  
+    }
+
+    }
 
 adult$type_employer <- sapply(adult$type_employer, group_emp)
 
@@ -67,27 +78,47 @@ print(table(adult$type_employer))
 
 print(table(adult$marital))
 
+![7](https://user-images.githubusercontent.com/97744709/212882642-65a0bef0-947b-47a7-80b1-7875d4d6c245.jpg)
 
+    group_marital <- function(status) {
+  
+    status <- as.character(status)
+  
+    if (status == 'Divorced' |
+      
+        status == 'Separated' | status == 'Widowed') {
+    
+      return('Not-Married')
+  
+    } else if (status == 'Married-AF-spouse' |
+             
+              status == 'Married-civ-spouse' |
+             
+              status == 'Married-spouse-absent') {
+    
+      return('Married')
+  
+    } else{
+    
+      return('Never-Married')
+  
+    }
 
-group_marital <- function(status) {
-  status <- as.character(status)
-  if (status == 'Divorced' |
-      status == 'Separated' | status == 'Widowed') {
-    return('Not-Married')
-  } else if (status == 'Married-AF-spouse' |
-             status == 'Married-civ-spouse' |
-             status == 'Married-spouse-absent') {
-    return('Married')
-  } else{
-    return('Never-Married')
-  }
-}
+    }
 
 adult$marital <- sapply(adult$marital, group_marital)
 
-# print(table(adult$marital))
+print(table(adult$marital))
 
-# print(table(adult$country))
+![8](https://user-images.githubusercontent.com/97744709/212883500-d09d2a53-d2c0-4726-a4a6-d8e502bbc15f.jpg)
+
+**#country column**
+
+print(table(adult$country))
+
+![9](https://user-images.githubusercontent.com/97744709/212883863-5dfd9227-94c1-481e-a0e7-6e6ea08015b3.jpg)
+
+#Grouping these countries by continent
 
 Asia <- c(
   'China',
@@ -138,27 +169,45 @@ Latin.and.South.America <-
     'Jamaica',
     'Trinadad&Tobago'
   )
+  
 Other <- c('South')
 
-group_country <- function(nation) {
-  nation <- as.character(nation)
-  if (nation %in% Asia) {
-    return('Asia')
-  } else if (nation %in% North.America) {
-    return('North.America')
-  } else if (nation %in% Europe) {
-    return('Europe')
-  } else if (nation %in% Latin.and.South.America) {
-    return('Latin.and.South.America')
-  } else{
-    return('Other')
-  }
-}
+    group_country <- function(nation) {
+  
+    nation <- as.character(nation)
+  
+    if (nation %in% Asia) {
+    
+      return('Asia')
+  
+    } else if (nation %in% North.America) {
+    
+      return('North.America')
+  
+    } else if (nation %in% Europe) {
+    
+      return('Europe')
+  
+    } else if (nation %in% Latin.and.South.America) {
+    
+      return('Latin.and.South.America')
+  
+    } else{
+    
+      return('Other')
+  
+    }
+
+    }
 
 
 adult$country <- sapply(adult$country, group_country)
 
-# print(str(adult))
+print(table(adult$country))
+
+![10](https://user-images.githubusercontent.com/97744709/212885738-e9844b5d-cefd-4f7b-a463-e45acd899d46.jpg)
+
+print(str(adult))
 
 # print(table(adult$education))
 
